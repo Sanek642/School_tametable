@@ -15,7 +15,6 @@ namespace School_tametable
             EmployeeSubject.UpdateDG(dataGridView3);
             NameClass.UpdateDG(dataGridView4);
             Class.UpdateDG(dataGridView5);
-            LessonsTime.UpdateDG(dataGridView6);
 
         }
         private void button1_Click(object sender, EventArgs e)
@@ -212,13 +211,6 @@ namespace School_tametable
         {
             this.Enabled = false;
             FormCopyClass f = new FormCopyClass(this);
-            f.Show();
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            this.Enabled = false;
-            FormLT f = new FormLT(this);
             f.Show();
         }
     }

@@ -170,9 +170,6 @@ namespace School_tametable
 
                 entity.ToTable("lessons_time");
 
-                entity.HasIndex(e => new { e.DayOfWeek, e.Change, e.Number, e.TimeEnd, e.TimeBeg }, "IX_lessons_time_day_of_week_change_number_time_end_time_beg")
-                    .IsUnique();
-
                 entity.Property(e => e.IdLt)
                     .HasColumnType("Integer")
                     .HasColumnName("id_lt");
@@ -182,7 +179,7 @@ namespace School_tametable
                     .HasColumnName("change");
 
                 entity.Property(e => e.DayOfWeek)
-                    .HasColumnType("Text")
+                    .HasColumnType("Integer")
                     .HasColumnName("day_of_week");
 
                 entity.Property(e => e.Number)

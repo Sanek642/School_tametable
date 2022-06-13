@@ -54,7 +54,7 @@ namespace School_tametable
                     form.TopMost = true;
                     FormUp.MessegeOk("Указатель мыши должнен находиться в границах таблицы!");
                 }
-            } 
+            }
         }
         //Получение значения из ComboBox
         //public static string CurIndexCB(ComboBox cb)
