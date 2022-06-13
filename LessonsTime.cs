@@ -11,7 +11,7 @@ namespace School_tametable
         }
 
         public long IdLt { get; set; }
-        public long DayOfWeek { get; set; }
+        public string DayOfWeek { get; set; } = null!;
         public long Change { get; set; }
         public long Number { get; set; }
         public byte[] TimeBeg { get; set; } = null!;
