@@ -11,14 +11,13 @@ namespace School_tametable
         }
 
         public long IdLt { get; set; }
-        public long DayOfWeek { get; set; }
+        public string DayOfWeek { get; set; } = null!;
         public long Change { get; set; }
         public long Number { get; set; }
         public byte[] TimeBeg { get; set; } = null!;
         public byte[] TimeEnd { get; set; } = null!;
 
         public virtual ICollection<Lesson> Lessons { get; set; }
-
         public static void UpdateDG(DataGridView dg)
         {
             //очищаем datagrid перед заполнением

@@ -46,7 +46,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(138, 35);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(292, 23);
+            this.comboBox1.Size = new System.Drawing.Size(359, 23);
             this.comboBox1.TabIndex = 0;
             // 
             // label1
@@ -73,7 +73,7 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(138, 68);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(292, 23);
+            this.comboBox2.Size = new System.Drawing.Size(359, 23);
             this.comboBox2.TabIndex = 0;
             // 
             // label2
@@ -99,7 +99,7 @@
             this.maskedTextBox1.Location = new System.Drawing.Point(138, 100);
             this.maskedTextBox1.Mask = "0";
             this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(292, 23);
+            this.maskedTextBox1.Size = new System.Drawing.Size(359, 23);
             this.maskedTextBox1.TabIndex = 4;
             // 
             // label4
@@ -116,7 +116,7 @@
             this.maskedTextBox2.Location = new System.Drawing.Point(138, 134);
             this.maskedTextBox2.Mask = "к0каб00";
             this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(292, 23);
+            this.maskedTextBox2.Size = new System.Drawing.Size(359, 23);
             this.maskedTextBox2.TabIndex = 4;
             // 
             // checkBox1
@@ -133,7 +133,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(449, 210);
+            this.ClientSize = new System.Drawing.Size(523, 210);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.maskedTextBox2);
