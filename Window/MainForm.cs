@@ -209,7 +209,7 @@ namespace School_tametable
 
         private void toolStripMenuItem13_Click(object sender, EventArgs e)
         {
-
+            FormUp.MessegeOk("Тест!");
         }
     }
 }
