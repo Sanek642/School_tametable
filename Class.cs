@@ -74,7 +74,7 @@ namespace School_tametable
             }
         }
 
-        public static Class GetEmpSub(Form form, DataGridView dg)
+        public static Class GetClass(Form form, DataGridView dg)
         {
             if (form is MainForm form1)
             {

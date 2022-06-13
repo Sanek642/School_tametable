@@ -24,7 +24,7 @@ namespace School_tametable
         {
             form = f;
             this.TopMost = true;
-            cl = Class.GetEmpSub(form, form.dataGridView5);
+            cl = Class.GetClass(form, form.dataGridView5);
             InitializeComponent();
         }
 

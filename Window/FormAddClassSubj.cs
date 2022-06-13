@@ -40,6 +40,8 @@ namespace School_tametable
                 {
                     comboBox2.Items.Add(i.Employees.NameEmployess + "\\" + i.Subjects.NameSubject);
                 }
+                comboBox1.SelectedIndex = 0;
+                comboBox2.SelectedIndex = 0;
             }
         }
 
