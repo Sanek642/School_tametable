@@ -119,6 +119,7 @@
             this.maskedTextBox4.Name = "maskedTextBox4";
             this.maskedTextBox4.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox4.TabIndex = 1;
+            this.maskedTextBox4.Text = "20";
             // 
             // maskedTextBox3
             // 
@@ -127,6 +128,7 @@
             this.maskedTextBox3.Name = "maskedTextBox3";
             this.maskedTextBox3.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox3.TabIndex = 1;
+            this.maskedTextBox3.Text = "10";
             // 
             // maskedTextBox2
             // 
@@ -135,6 +137,7 @@
             this.maskedTextBox2.Name = "maskedTextBox2";
             this.maskedTextBox2.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox2.TabIndex = 1;
+            this.maskedTextBox2.Text = "7";
             // 
             // maskedTextBox1
             // 
@@ -143,6 +146,7 @@
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox1.TabIndex = 1;
+            this.maskedTextBox1.Text = "0810";
             this.maskedTextBox1.ValidatingType = typeof(System.DateTime);
             // 
             // label4
@@ -205,6 +209,7 @@
             this.maskedTextBox5.Name = "maskedTextBox5";
             this.maskedTextBox5.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox5.TabIndex = 1;
+            this.maskedTextBox5.Text = "20";
             // 
             // maskedTextBox6
             // 
@@ -213,6 +218,7 @@
             this.maskedTextBox6.Name = "maskedTextBox6";
             this.maskedTextBox6.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox6.TabIndex = 1;
+            this.maskedTextBox6.Text = "10";
             // 
             // maskedTextBox7
             // 
@@ -221,6 +227,7 @@
             this.maskedTextBox7.Name = "maskedTextBox7";
             this.maskedTextBox7.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox7.TabIndex = 1;
+            this.maskedTextBox7.Text = "6";
             // 
             // maskedTextBox8
             // 
@@ -229,6 +236,7 @@
             this.maskedTextBox8.Name = "maskedTextBox8";
             this.maskedTextBox8.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox8.TabIndex = 1;
+            this.maskedTextBox8.Text = "1330";
             this.maskedTextBox8.ValidatingType = typeof(System.DateTime);
             // 
             // label5
@@ -303,6 +311,7 @@
             this.maskedTextBox9.Name = "maskedTextBox9";
             this.maskedTextBox9.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox9.TabIndex = 1;
+            this.maskedTextBox9.Text = "20";
             // 
             // maskedTextBox10
             // 
@@ -311,6 +320,7 @@
             this.maskedTextBox10.Name = "maskedTextBox10";
             this.maskedTextBox10.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox10.TabIndex = 1;
+            this.maskedTextBox10.Text = "05";
             // 
             // maskedTextBox11
             // 
@@ -319,6 +329,7 @@
             this.maskedTextBox11.Name = "maskedTextBox11";
             this.maskedTextBox11.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox11.TabIndex = 1;
+            this.maskedTextBox11.Text = "7";
             // 
             // maskedTextBox12
             // 
@@ -327,6 +338,7 @@
             this.maskedTextBox12.Name = "maskedTextBox12";
             this.maskedTextBox12.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox12.TabIndex = 1;
+            this.maskedTextBox12.Text = "0810";
             this.maskedTextBox12.ValidatingType = typeof(System.DateTime);
             // 
             // label9
@@ -390,6 +402,7 @@
             this.maskedTextBox13.Name = "maskedTextBox13";
             this.maskedTextBox13.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox13.TabIndex = 1;
+            this.maskedTextBox13.Text = "20";
             // 
             // maskedTextBox14
             // 
@@ -398,6 +411,7 @@
             this.maskedTextBox14.Name = "maskedTextBox14";
             this.maskedTextBox14.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox14.TabIndex = 1;
+            this.maskedTextBox14.Text = "05";
             // 
             // maskedTextBox15
             // 
@@ -406,6 +420,7 @@
             this.maskedTextBox15.Name = "maskedTextBox15";
             this.maskedTextBox15.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox15.TabIndex = 1;
+            this.maskedTextBox15.Text = "6";
             // 
             // maskedTextBox16
             // 
@@ -414,6 +429,7 @@
             this.maskedTextBox16.Name = "maskedTextBox16";
             this.maskedTextBox16.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox16.TabIndex = 1;
+            this.maskedTextBox16.Text = "1400";
             this.maskedTextBox16.ValidatingType = typeof(System.DateTime);
             // 
             // label13
@@ -503,6 +519,7 @@
             this.maskedTextBox17.Name = "maskedTextBox17";
             this.maskedTextBox17.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox17.TabIndex = 1;
+            this.maskedTextBox17.Text = "20";
             // 
             // maskedTextBox18
             // 
@@ -511,6 +528,7 @@
             this.maskedTextBox18.Name = "maskedTextBox18";
             this.maskedTextBox18.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox18.TabIndex = 1;
+            this.maskedTextBox18.Text = "05";
             // 
             // maskedTextBox19
             // 
@@ -519,6 +537,7 @@
             this.maskedTextBox19.Name = "maskedTextBox19";
             this.maskedTextBox19.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox19.TabIndex = 1;
+            this.maskedTextBox19.Text = "7";
             // 
             // maskedTextBox20
             // 
@@ -527,6 +546,7 @@
             this.maskedTextBox20.Name = "maskedTextBox20";
             this.maskedTextBox20.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox20.TabIndex = 1;
+            this.maskedTextBox20.Text = "0810";
             this.maskedTextBox20.ValidatingType = typeof(System.DateTime);
             // 
             // label17
@@ -590,6 +610,7 @@
             this.maskedTextBox21.Name = "maskedTextBox21";
             this.maskedTextBox21.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox21.TabIndex = 1;
+            this.maskedTextBox21.Text = "20";
             // 
             // maskedTextBox22
             // 
@@ -598,6 +619,7 @@
             this.maskedTextBox22.Name = "maskedTextBox22";
             this.maskedTextBox22.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox22.TabIndex = 1;
+            this.maskedTextBox22.Text = "05";
             // 
             // maskedTextBox23
             // 
@@ -606,6 +628,7 @@
             this.maskedTextBox23.Name = "maskedTextBox23";
             this.maskedTextBox23.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox23.TabIndex = 1;
+            this.maskedTextBox23.Text = "6";
             // 
             // maskedTextBox24
             // 
@@ -614,6 +637,7 @@
             this.maskedTextBox24.Name = "maskedTextBox24";
             this.maskedTextBox24.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox24.TabIndex = 1;
+            this.maskedTextBox24.Text = "1330";
             this.maskedTextBox24.ValidatingType = typeof(System.DateTime);
             // 
             // label21

@@ -29,9 +29,35 @@ namespace School_tametable
                 var lt = db.LessonsTimes.ToList();
                 foreach (var i in lt)
                 {
-                    dg.Rows.Add(i.IdLt, i.Change, i.DayOfWeek, i.Lessons, i.TimeBeg, i.TimeEnd);
+                    long longVarb = BitConverter.ToInt64(i.TimeBeg, 0);
+                    DateTime dateTimeBeg = DateTime.FromBinary(longVarb);
+
+                    long longVare = BitConverter.ToInt64(i.TimeEnd, 0);
+                    DateTime dateTimeEnd = DateTime.FromBinary(longVare);
+
+                    dg.Rows.Add(i.IdLt, i.Change, i.DayOfWeek, i.Number, dateTimeBeg.TimeOfDay, dateTimeEnd.TimeOfDay);
                 }
             }
         }
+
+        public static void TruCathcSave(schoolContext db, MainForm mainForm, Form curForm, string error)
+        {
+            try
+            {
+                db.SaveChanges();
+                LessonsTime.UpdateDG(mainForm.dataGridView6);
+                curForm.Close();
+            }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException)
+            {
+
+                FormUp.MessegeOk(error);
+                curForm.TopMost = true;
+
+            }
+
+        }
+
+
     }
 }
