@@ -1,4 +1,7 @@
+using GemBox.Document;
+
 namespace School_tametable
+
 {
     public partial class MainForm : Form
     {
@@ -220,6 +223,19 @@ namespace School_tametable
             this.Enabled = false;
             FormLT f = new FormLT(this);
             f.Show();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            
+            try
+            {
+
+            }
+            catch
+            {
+
+            }
         }
     }
 }

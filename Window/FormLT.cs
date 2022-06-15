@@ -99,7 +99,7 @@ namespace School_tametable
             }
         }
 
-        private void AddDSmena(int smena, DateTime time, schoolContext db, int n, int per, int bper, string d)
+        private void AddDSmena(int smena, DateTime time, schoolContext db, int n, int per, int bper, string d, int lmin)
         {
 
                 for (int j = 0; j < smena; j++)
@@ -110,7 +110,7 @@ namespace School_tametable
                         DayOfWeek = d,
                         Number = j + 1,
                         TimeBeg = BitConverter.GetBytes(time.Ticks),
-                        TimeEnd = BitConverter.GetBytes((time.AddMinutes(40).Ticks))
+                        TimeEnd = BitConverter.GetBytes((time.AddMinutes(lmin).Ticks))
                     };
 
                     db.LessonsTimes.Add(lessonsTime);
@@ -137,6 +137,7 @@ namespace School_tametable
             DateTime tbeg;
             int per;
             int bper;
+            int lmin;
 
             List<MaskedTextBox> list = new List<MaskedTextBox> { maskedTextBox1,maskedTextBox2,maskedTextBox3,maskedTextBox4,
                                                                  maskedTextBox5,maskedTextBox6,maskedTextBox7,maskedTextBox8};
@@ -182,8 +183,8 @@ namespace School_tametable
 
                 if (ch1)
                 {
-                    List<MaskedTextBox> list1 = new List<MaskedTextBox> { maskedTextBox9,maskedTextBox10,maskedTextBox11,maskedTextBox12,
-                                                                          maskedTextBox13,maskedTextBox14,maskedTextBox15,maskedTextBox16};
+                    List<MaskedTextBox> list1 = new List<MaskedTextBox> { maskedTextBox9,maskedTextBox10,maskedTextBox11,maskedTextBox12, maskedTextBox28,
+                                                                          maskedTextBox13,maskedTextBox14,maskedTextBox15,maskedTextBox16, maskedTextBox27};
                     bool b = Listfalse(list1);
                     bool cb = string.IsNullOrEmpty(comboBox1.SelectedItem.ToString());
                     
@@ -212,15 +213,17 @@ namespace School_tametable
                             tbeg = Convert.ToDateTime(maskedTextBox12.Text);
                             per = Convert.ToInt32(maskedTextBox10.Text);
                             bper = Convert.ToInt32(maskedTextBox9.Text);
+                            lmin = Convert.ToInt32(maskedTextBox28.Text);
 
-                            AddDSmena(smena1, tbeg, db, 1, per, bper, str);
+                            AddDSmena(smena1, tbeg, db, 1, per, bper, str, lmin);
 
                             smena2 = Convert.ToInt32(maskedTextBox15.Text);
                             tbeg = Convert.ToDateTime(maskedTextBox16.Text);
                             per = Convert.ToInt32(maskedTextBox14.Text);
                             bper = Convert.ToInt32(maskedTextBox13.Text);
+                            lmin = Convert.ToInt32(maskedTextBox27.Text);
 
-                            AddDSmena(smena2, tbeg, db, 2, per, bper, str);
+                            AddDSmena(smena2, tbeg, db, 2, per, bper, str, lmin);
 
                             LessonsTime.TruCathcSave(db, form, this, "Добавляем особенный день!");
 
@@ -253,8 +256,9 @@ namespace School_tametable
                     if (ch3)
                     {
 
-                        List<MaskedTextBox> list2 = new List<MaskedTextBox> { maskedTextBox17, maskedTextBox18, maskedTextBox19, maskedTextBox20 };
+                        List<MaskedTextBox> list2 = new List<MaskedTextBox> { maskedTextBox17, maskedTextBox18, maskedTextBox19, maskedTextBox20, maskedTextBox25};
                         bool b = Listfalse(list2);
+                        
 
                         if (b)
                         {
@@ -269,8 +273,9 @@ namespace School_tametable
                                 tbeg = Convert.ToDateTime(maskedTextBox20.Text);
                                 per = Convert.ToInt32(maskedTextBox18.Text);
                                 bper = Convert.ToInt32(maskedTextBox17.Text);
+                                lmin=Convert.ToInt32(maskedTextBox25.Text);
 
-                                AddDSmena(smena1, tbeg, db, 1, per, bper, str);
+                                AddDSmena(smena1, tbeg, db, 1, per, bper, str,lmin);
                                 LessonsTime.TruCathcSave(db, form, this, "Добавляем субботу!");
                             }
                         }
@@ -279,8 +284,8 @@ namespace School_tametable
                     }
                     if(!ch3)
                     {
-                        List<MaskedTextBox> list3 = new List<MaskedTextBox> { maskedTextBox17, maskedTextBox18, maskedTextBox19, maskedTextBox20,
-                                                                              maskedTextBox21, maskedTextBox22, maskedTextBox23, maskedTextBox24};
+                        List<MaskedTextBox> list3 = new List<MaskedTextBox> { maskedTextBox17, maskedTextBox18, maskedTextBox19, maskedTextBox20, maskedTextBox25,
+                                                                              maskedTextBox21, maskedTextBox22, maskedTextBox23, maskedTextBox24, maskedTextBox26};
                         bool b = Listfalse(list3);
 
                         if (b)
@@ -295,15 +300,17 @@ namespace School_tametable
                                 tbeg = Convert.ToDateTime(maskedTextBox20.Text);
                                 per = Convert.ToInt32(maskedTextBox18.Text);
                                 bper = Convert.ToInt32(maskedTextBox17.Text);
+                                lmin = Convert.ToInt32(maskedTextBox25.Text);
 
-                                AddDSmena(smena1, tbeg, db, 1, per, bper, str);
+                                AddDSmena(smena1, tbeg, db, 1, per, bper, str, lmin);
 
                                 smena2 = Convert.ToInt32(maskedTextBox23.Text);
                                 tbeg = Convert.ToDateTime(maskedTextBox24.Text);
                                 per = Convert.ToInt32(maskedTextBox22.Text);
                                 bper = Convert.ToInt32(maskedTextBox21.Text);
+                                lmin = Convert.ToInt32(maskedTextBox26.Text);
 
-                                AddDSmena(smena2, tbeg, db, 2, per, bper, str);
+                                AddDSmena(smena2, tbeg, db, 2, per, bper, str, lmin);
 
                                 LessonsTime.TruCathcSave(db, form, this, "Добавляем субботу!");
                             }

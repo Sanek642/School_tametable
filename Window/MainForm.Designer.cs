@@ -96,6 +96,7 @@
             this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -696,6 +697,7 @@
             // 
             // splitContainer4.Panel2
             // 
+            this.splitContainer4.Panel2.Controls.Add(this.button10);
             this.splitContainer4.Panel2.Controls.Add(this.button9);
             this.splitContainer4.Size = new System.Drawing.Size(714, 411);
             this.splitContainer4.SplitterDistance = 539;
@@ -767,6 +769,16 @@
             this.button9.Text = "Сгенерировать";
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(31, 49);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(113, 23);
+            this.button10.TabIndex = 1;
+            this.button10.Text = "в WORD";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // MainForm
             // 
@@ -883,5 +895,6 @@
         private DataGridViewTextBoxColumn Column23;
         private DataGridViewTextBoxColumn Column24;
         private Button button9;
+        private Button button10;
     }
 }

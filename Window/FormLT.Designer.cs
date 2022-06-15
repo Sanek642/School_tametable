@@ -68,15 +68,19 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.maskedTextBox25 = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBox17 = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBox18 = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBox19 = new System.Windows.Forms.MaskedTextBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.maskedTextBox20 = new System.Windows.Forms.MaskedTextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.maskedTextBox26 = new System.Windows.Forms.MaskedTextBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.maskedTextBox21 = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBox22 = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBox23 = new System.Windows.Forms.MaskedTextBox();
@@ -87,6 +91,10 @@
             this.label24 = new System.Windows.Forms.Label();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.maskedTextBox27 = new System.Windows.Forms.MaskedTextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.maskedTextBox28 = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -288,6 +296,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.maskedTextBox28);
+            this.groupBox3.Controls.Add(this.label28);
             this.groupBox3.Controls.Add(this.maskedTextBox9);
             this.groupBox3.Controls.Add(this.maskedTextBox10);
             this.groupBox3.Controls.Add(this.maskedTextBox11);
@@ -379,6 +389,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.maskedTextBox27);
+            this.groupBox4.Controls.Add(this.label27);
             this.groupBox4.Controls.Add(this.maskedTextBox13);
             this.groupBox4.Controls.Add(this.maskedTextBox14);
             this.groupBox4.Controls.Add(this.maskedTextBox15);
@@ -496,9 +508,11 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.maskedTextBox25);
             this.groupBox5.Controls.Add(this.maskedTextBox17);
             this.groupBox5.Controls.Add(this.maskedTextBox18);
             this.groupBox5.Controls.Add(this.maskedTextBox19);
+            this.groupBox5.Controls.Add(this.label25);
             this.groupBox5.Controls.Add(this.maskedTextBox20);
             this.groupBox5.Controls.Add(this.label17);
             this.groupBox5.Controls.Add(this.label18);
@@ -511,6 +525,15 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Смена 1:";
             this.groupBox5.Visible = false;
+            // 
+            // maskedTextBox25
+            // 
+            this.maskedTextBox25.Location = new System.Drawing.Point(174, 137);
+            this.maskedTextBox25.Mask = "00";
+            this.maskedTextBox25.Name = "maskedTextBox25";
+            this.maskedTextBox25.Size = new System.Drawing.Size(100, 23);
+            this.maskedTextBox25.TabIndex = 1;
+            this.maskedTextBox25.Text = "40";
             // 
             // maskedTextBox17
             // 
@@ -538,6 +561,15 @@
             this.maskedTextBox19.Size = new System.Drawing.Size(100, 23);
             this.maskedTextBox19.TabIndex = 1;
             this.maskedTextBox19.Text = "7";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(88, 145);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(80, 15);
+            this.label25.TabIndex = 0;
+            this.label25.Text = "Время урока:";
             // 
             // maskedTextBox20
             // 
@@ -587,6 +619,8 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.maskedTextBox26);
+            this.groupBox6.Controls.Add(this.label26);
             this.groupBox6.Controls.Add(this.maskedTextBox21);
             this.groupBox6.Controls.Add(this.maskedTextBox22);
             this.groupBox6.Controls.Add(this.maskedTextBox23);
@@ -602,6 +636,24 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Смена 2:";
             this.groupBox6.Visible = false;
+            // 
+            // maskedTextBox26
+            // 
+            this.maskedTextBox26.Location = new System.Drawing.Point(174, 137);
+            this.maskedTextBox26.Mask = "00";
+            this.maskedTextBox26.Name = "maskedTextBox26";
+            this.maskedTextBox26.Size = new System.Drawing.Size(100, 23);
+            this.maskedTextBox26.TabIndex = 3;
+            this.maskedTextBox26.Text = "40";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(88, 145);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(80, 15);
+            this.label26.TabIndex = 2;
+            this.label26.Text = "Время урока:";
             // 
             // maskedTextBox21
             // 
@@ -697,6 +749,42 @@
             this.button1.Text = "Сгенерировать";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // maskedTextBox27
+            // 
+            this.maskedTextBox27.Location = new System.Drawing.Point(174, 137);
+            this.maskedTextBox27.Mask = "00";
+            this.maskedTextBox27.Name = "maskedTextBox27";
+            this.maskedTextBox27.Size = new System.Drawing.Size(100, 23);
+            this.maskedTextBox27.TabIndex = 5;
+            this.maskedTextBox27.Text = "40";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(88, 145);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(80, 15);
+            this.label27.TabIndex = 4;
+            this.label27.Text = "Время урока:";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(88, 145);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(80, 15);
+            this.label28.TabIndex = 4;
+            this.label28.Text = "Время урока:";
+            // 
+            // maskedTextBox28
+            // 
+            this.maskedTextBox28.Location = new System.Drawing.Point(174, 137);
+            this.maskedTextBox28.Mask = "00";
+            this.maskedTextBox28.Name = "maskedTextBox28";
+            this.maskedTextBox28.Size = new System.Drawing.Size(100, 23);
+            this.maskedTextBox28.TabIndex = 5;
+            this.maskedTextBox28.Text = "40";
             // 
             // FormLT
             // 
@@ -795,5 +883,13 @@
         private Label label24;
         private CheckBox checkBox3;
         private Button button1;
+        private MaskedTextBox maskedTextBox25;
+        private Label label25;
+        private MaskedTextBox maskedTextBox26;
+        private Label label26;
+        private MaskedTextBox maskedTextBox28;
+        private Label label28;
+        private MaskedTextBox maskedTextBox27;
+        private Label label27;
     }
 }
