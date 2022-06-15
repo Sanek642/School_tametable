@@ -80,19 +80,34 @@ namespace School_tametable
             DateTime time1 = time;
             for (int i = 0; i < 6; i++) //дней всегда 6 
             {
+                string p = per.ToString();
+
                 for (int j = 0; j < smena; j++)
                 {
+                    
                     LessonsTime lessonsTime = new LessonsTime() { Change = n, DayOfWeek = day[i], Number = j + 1, TimeBeg = BitConverter.GetBytes(time1.Ticks), 
-                                                                   TimeEnd = BitConverter.GetBytes((time1.AddMinutes(40).Ticks)) };
+                                                                   TimeEnd = BitConverter.GetBytes((time1.AddMinutes(40).Ticks)), Turn=p};
                     db.LessonsTimes.Add(lessonsTime);
                     if (j == 2 || j == 3)
                     {
                         time1 = time1.AddMinutes(40 + bper);
+                        p = bper.ToString();
                     }
                     else
                     {
-                        time1 = time1.AddMinutes(40 + per);
+                        if (j == smena - 2)
+                        {
+                            p = null;
+                            time1 = time1.AddMinutes(40 + per);
+
+                        }
+                        else
+                        {
+                            time1 = time1.AddMinutes(40 + per);
+                            p = per.ToString();
+                        }
                     }
+                    
                 }
                 time1 = time;
 
@@ -101,27 +116,37 @@ namespace School_tametable
 
         private void AddDSmena(int smena, DateTime time, schoolContext db, int n, int per, int bper, string d, int lmin)
         {
-
+            string p = per.ToString();
                 for (int j = 0; j < smena; j++)
                 {
                     LessonsTime lessonsTime = new LessonsTime()
                     {
                         Change = n,
-                        DayOfWeek = d,
+                        DayOfWeek = d.ToUpper(),
                         Number = j + 1,
                         TimeBeg = BitConverter.GetBytes(time.Ticks),
-                        TimeEnd = BitConverter.GetBytes((time.AddMinutes(lmin).Ticks))
+                        TimeEnd = BitConverter.GetBytes((time.AddMinutes(lmin).Ticks)),
+                        Turn = p
                     };
 
                     db.LessonsTimes.Add(lessonsTime);
 
                     if (j == 2 || j == 3)
                     {
-                        time = time.AddMinutes(40 + bper);
+                        time = time.AddMinutes(lmin + bper);
+                        p = bper.ToString();
                     }
                     else
+                    {   if (j == smena - 2)
+                        {
+                            time = time.AddMinutes(lmin + per);
+                        p = null;
+                        }
+                        else
                     {
-                        time = time.AddMinutes(40 + per);
+                        time = time.AddMinutes(lmin + per);
+                        p = per.ToString();
+                    }
                     }
                 }
             
@@ -164,14 +189,14 @@ namespace School_tametable
                         LessonsTime.TruCathcSave(db, form, this, "Удаляем все из таблицы!");
                     }
 
-                    smena1 = Convert.ToInt32(maskedTextBox2.Text);
+                    smena1 = Convert.ToInt32(maskedTextBox2.Text)>7?7: Convert.ToInt32(maskedTextBox2.Text);
                     tbeg = Convert.ToDateTime(maskedTextBox1.Text);
                     per = Convert.ToInt32(maskedTextBox3.Text);
                     bper = Convert.ToInt32(maskedTextBox4.Text);
 
                     AddSmena(smena1, tbeg, db, 1, per, bper);
 
-                    smena2 = Convert.ToInt32(maskedTextBox7.Text);
+                    smena2 = Convert.ToInt32(maskedTextBox7.Text)>7?7: Convert.ToInt32(maskedTextBox7.Text);
                     per = Convert.ToInt32(maskedTextBox6.Text);
                     bper = Convert.ToInt32(maskedTextBox5.Text);
                     tbeg = Convert.ToDateTime(maskedTextBox8.Text);
@@ -185,6 +210,8 @@ namespace School_tametable
                 {
                     List<MaskedTextBox> list1 = new List<MaskedTextBox> { maskedTextBox9,maskedTextBox10,maskedTextBox11,maskedTextBox12, maskedTextBox28,
                                                                           maskedTextBox13,maskedTextBox14,maskedTextBox15,maskedTextBox16, maskedTextBox27};
+                    
+                    
                     bool b = Listfalse(list1);
                     bool cb = string.IsNullOrEmpty(comboBox1.SelectedItem.ToString());
                     
@@ -209,7 +236,7 @@ namespace School_tametable
 
                             LessonsTime.TruCathcSave(db, form, this, "Удаляем все из таблицы день исключения!");
 
-                            smena1 = Convert.ToInt32(maskedTextBox11.Text);
+                            smena1 = Convert.ToInt32(maskedTextBox11.Text)>7?7:Convert.ToInt32(maskedTextBox11.Text);
                             tbeg = Convert.ToDateTime(maskedTextBox12.Text);
                             per = Convert.ToInt32(maskedTextBox10.Text);
                             bper = Convert.ToInt32(maskedTextBox9.Text);
@@ -217,7 +244,7 @@ namespace School_tametable
 
                             AddDSmena(smena1, tbeg, db, 1, per, bper, str, lmin);
 
-                            smena2 = Convert.ToInt32(maskedTextBox15.Text);
+                            smena2 = Convert.ToInt32(maskedTextBox15.Text)>7?7:Convert.ToInt32(maskedTextBox15.Text);
                             tbeg = Convert.ToDateTime(maskedTextBox16.Text);
                             per = Convert.ToInt32(maskedTextBox14.Text);
                             bper = Convert.ToInt32(maskedTextBox13.Text);
@@ -269,7 +296,7 @@ namespace School_tametable
                         {
                             using (schoolContext db = new schoolContext())
                             {
-                                smena1 = Convert.ToInt32(maskedTextBox19.Text);
+                                smena1 = Convert.ToInt32(maskedTextBox19.Text)>7?7:Convert.ToInt32(maskedTextBox19.Text);
                                 tbeg = Convert.ToDateTime(maskedTextBox20.Text);
                                 per = Convert.ToInt32(maskedTextBox18.Text);
                                 bper = Convert.ToInt32(maskedTextBox17.Text);
@@ -296,7 +323,7 @@ namespace School_tametable
                         {
                             using (schoolContext db = new schoolContext())
                             {
-                                smena1 = Convert.ToInt32(maskedTextBox19.Text);
+                                smena1 = Convert.ToInt32(maskedTextBox19.Text)>7?7:Convert.ToInt32(maskedTextBox19.Text);
                                 tbeg = Convert.ToDateTime(maskedTextBox20.Text);
                                 per = Convert.ToInt32(maskedTextBox18.Text);
                                 bper = Convert.ToInt32(maskedTextBox17.Text);
@@ -304,7 +331,7 @@ namespace School_tametable
 
                                 AddDSmena(smena1, tbeg, db, 1, per, bper, str, lmin);
 
-                                smena2 = Convert.ToInt32(maskedTextBox23.Text);
+                                smena2 = Convert.ToInt32(maskedTextBox23.Text)>7?7:Convert.ToInt32(maskedTextBox23.Text);
                                 tbeg = Convert.ToDateTime(maskedTextBox24.Text);
                                 per = Convert.ToInt32(maskedTextBox22.Text);
                                 bper = Convert.ToInt32(maskedTextBox21.Text);
@@ -322,6 +349,11 @@ namespace School_tametable
 
             }
 
+        }
+
+        private void FormLT_Load(object sender, EventArgs e)
+        {
+            comboBox1.SelectedIndex = 0;
         }
     }
 }

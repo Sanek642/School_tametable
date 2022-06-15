@@ -16,8 +16,10 @@ namespace School_tametable
         public long Number { get; set; }
         public byte[] TimeBeg { get; set; } = null!;
         public byte[] TimeEnd { get; set; } = null!;
+        public string? Turn { get; set; }
 
         public virtual ICollection<Lesson> Lessons { get; set; }
+
         public static void UpdateDG(DataGridView dg)
         {
             //очищаем datagrid перед заполнением
@@ -35,7 +37,7 @@ namespace School_tametable
                     long longVare = BitConverter.ToInt64(i.TimeEnd, 0);
                     DateTime dateTimeEnd = DateTime.FromBinary(longVare);
 
-                    dg.Rows.Add(i.IdLt, i.Change, i.DayOfWeek, i.Number, dateTimeBeg.TimeOfDay, dateTimeEnd.TimeOfDay);
+                    dg.Rows.Add(i.IdLt, i.Change, i.DayOfWeek, i.Number, dateTimeBeg.TimeOfDay, dateTimeEnd.TimeOfDay,i.Turn);
                 }
             }
         }
@@ -57,7 +59,6 @@ namespace School_tametable
             }
 
         }
-
 
     }
 }

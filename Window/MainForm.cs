@@ -1,4 +1,12 @@
-using GemBox.Document;
+using System.Text.RegularExpressions;
+using System.IO;
+using System.Collections.Generic;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
+using System.Collections.Generic;
+using Word = Microsoft.Office.Interop.Word;
+
 
 namespace School_tametable
 
@@ -227,13 +235,121 @@ namespace School_tametable
 
         private void button10_Click(object sender, EventArgs e)
         {
-            
+            Word.Document doc = null;
+
             try
             {
+                string year = DateTime.Today.Year.ToString();
+                string yearn = (DateTime.Today.Year + 1).ToString();
 
+                List<string> par = new List<string>();
+               
+
+                par.Add(year);
+                par.Add(yearn);
+
+
+                using (schoolContext db = new schoolContext())
+                {
+                    //Формируем список вычислительных параметров для обычных дней
+                    var dayl = db.LessonsTimes.Where(c => c.DayOfWeek != "СУБ." && !Regex.IsMatch(c.DayOfWeek, @"^[А-Я]{2}")).Select(c => c.DayOfWeek).Distinct().ToArray();
+                    //Объединяем список в одну строку
+                    string dl = string.Join("", dayl);
+
+                    // Название дней недели обычное расписание
+                    par.Add(dl);
+
+                    //Получаем список элементов для любого дня
+
+                    var sl1 = db.LessonsTimes.Where(c => c.DayOfWeek == dayl[0] && c.Change==1).ToList();
+
+                    FormUp.ListPar(sl1, par);
+
+                    var sl2 = db.LessonsTimes.Where(c => c.DayOfWeek == dayl[0] && c.Change == 2).ToList();
+                    
+                    FormUp.ListPar(sl2, par);
+
+                    //заполняем параметры особого дня
+
+                    var oday1 = db.LessonsTimes.Where(c => c.Change==1 && c.DayOfWeek != "СБ." && Regex.IsMatch(c.DayOfWeek, @"^[А-Я]{2}")).ToList();
+
+                    //Название особого дня
+
+                    string od = oday1[0].DayOfWeek;
+                    par.Add(od);
+
+                    FormUp.ListPar(oday1, par);
+
+                    var oday2 = db.LessonsTimes.Where(c => c.DayOfWeek != "СБ." && Regex.IsMatch(c.DayOfWeek, @"^[А-Я]{2}")&&c.Change==2).ToList();
+
+                    FormUp.ListPar(oday2, par);
+
+                    //Заполняем для субботы
+                    var sub = db.LessonsTimes.Where(c => c.DayOfWeek == "СБ." && c.Change==1).ToList();
+                    FormUp.ListPar(sub, par);
+                    var sub2 = db.LessonsTimes.Where(c => c.DayOfWeek == "СБ." && c.Change == 2).ToList();
+                    if(sub2.Any())
+                    {
+                        FormUp.ListPar(sub2, par);
+                    }
+                    else
+                    {
+                        for(int j=0;j<7;j++)
+                        {
+                            par.Add(" ");
+                        }
+                    }
+
+                }
+
+                //Открываем документ и заполняем параметры
+                string spath = @"C:\Users\Alexa\OneDrive\Program\School_tametable\Шаблоны\Расписание звонков.docx";
+
+                Word.Application app = new Word.Application();
+
+                // Открываем
+                doc = app.Documents.Add(spath);
+                doc.Activate();
+
+                // Добавляем информацию
+                // wBookmarks содержит все закладки
+                Word.Bookmarks wBookmarks = doc.Bookmarks;
+                Word.Range wRange;
+                var dc = doc.Content;
+
+                int i = 0;
+
+                object oMissing = System.Reflection.Missing.Value;
+                Word.Range dRange = doc.Range(ref oMissing, ref oMissing);
+
+
+                foreach (Word.Bookmark mark in wBookmarks)
+                {
+                    //dRange.Start = mark.Range.Start;
+                    //dRange.End = mark.Range.End;
+                    //dRange.Delete();
+                    //doc.Save();
+                    //
+                    wRange = mark.Range;
+                    wRange.Text = par[i];
+
+                    i++;
+
+                }
+              
+                // Закрываем документ
+
+                doc.Close();
+                doc = null;
             }
-            catch
+
+
+
+            catch (Exception ex)
             {
+                doc.Close();
+                doc = null;
+                FormUp.MessegeOk(ex.Message);
 
             }
         }

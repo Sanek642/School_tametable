@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Word = Microsoft.Office.Interop.Word;
+using System.Collections.Generic;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
+using System.Collections.Generic;
+
 
 namespace School_tametable
 {
@@ -56,11 +63,31 @@ namespace School_tametable
                 }
             } 
         }
-        //Получение значения из ComboBox
-        //public static string CurIndexCB(ComboBox cb)
-        //{
-       //    return cb.SelectedValue.ToString();
-       // }
+        //Получение вычислительных параметров для дня
+        public static void ListPar(List<LessonsTime> ldb, List<string> list)
+        {
+            foreach (var temp in ldb)
+            {
+                long longVarb = BitConverter.ToInt64(temp.TimeBeg, 0);
+                DateTime dateTimeBeg = DateTime.FromBinary(longVarb);
+
+                long longVare = BitConverter.ToInt64(temp.TimeEnd, 0);
+                DateTime dateTimeEnd = DateTime.FromBinary(longVare);
+
+                string pp = dateTimeBeg.TimeOfDay + " " + dateTimeEnd.TimeOfDay + " " + temp.Turn;
+                list.Add(pp);
+    
+            }
+            int res = 7 - ldb.Count;
+            if (res!=0)
+            {
+                for(int i = 0; i < res; i++)
+                {
+                    list.Add(" ");
+                }
+            }
+
+        }
 
     }
 }

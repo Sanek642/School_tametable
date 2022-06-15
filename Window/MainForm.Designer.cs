@@ -95,8 +95,9 @@
             this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button9 = new System.Windows.Forms.Button();
+            this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button10 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -712,7 +713,8 @@
             this.Column21,
             this.Column22,
             this.Column23,
-            this.Column24});
+            this.Column24,
+            this.Column25});
             this.dataGridView6.Location = new System.Drawing.Point(-1, -1);
             this.dataGridView6.MultiSelect = false;
             this.dataGridView6.Name = "dataGridView6";
@@ -740,13 +742,14 @@
             this.Column21.HeaderText = "День недели";
             this.Column21.Name = "Column21";
             this.Column21.ReadOnly = true;
+            this.Column21.Width = 50;
             // 
             // Column22
             // 
             this.Column22.HeaderText = "Номер урока";
             this.Column22.Name = "Column22";
             this.Column22.ReadOnly = true;
-            this.Column22.Width = 90;
+            this.Column22.Width = 50;
             // 
             // Column23
             // 
@@ -760,15 +763,12 @@
             this.Column24.Name = "Column24";
             this.Column24.ReadOnly = true;
             // 
-            // button9
+            // Column25
             // 
-            this.button9.Location = new System.Drawing.Point(31, 20);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(113, 23);
-            this.button9.TabIndex = 0;
-            this.button9.Text = "Сгенерировать";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.Column25.HeaderText = "Перемена";
+            this.Column25.Name = "Column25";
+            this.Column25.ReadOnly = true;
+            this.Column25.Width = 90;
             // 
             // button10
             // 
@@ -779,6 +779,16 @@
             this.button10.Text = "в WORD";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(31, 20);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(113, 23);
+            this.button9.TabIndex = 0;
+            this.button9.Text = "Сгенерировать";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // MainForm
             // 
@@ -888,13 +898,14 @@
         private TabPage tabPage6;
         private SplitContainer splitContainer4;
         internal DataGridView dataGridView6;
+        private Button button9;
+        private Button button10;
         private DataGridViewTextBoxColumn Column19;
         private DataGridViewTextBoxColumn Column20;
         private DataGridViewTextBoxColumn Column21;
         private DataGridViewTextBoxColumn Column22;
         private DataGridViewTextBoxColumn Column23;
         private DataGridViewTextBoxColumn Column24;
-        private Button button9;
-        private Button button10;
+        private DataGridViewTextBoxColumn Column25;
     }
 }

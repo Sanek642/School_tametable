@@ -48,6 +48,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.maskedTextBox28 = new System.Windows.Forms.MaskedTextBox();
+            this.label28 = new System.Windows.Forms.Label();
             this.maskedTextBox9 = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBox10 = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBox11 = new System.Windows.Forms.MaskedTextBox();
@@ -57,6 +59,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.maskedTextBox27 = new System.Windows.Forms.MaskedTextBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.maskedTextBox13 = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBox14 = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBox15 = new System.Windows.Forms.MaskedTextBox();
@@ -91,10 +95,6 @@
             this.label24 = new System.Windows.Forms.Label();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.maskedTextBox27 = new System.Windows.Forms.MaskedTextBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.maskedTextBox28 = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -314,6 +314,24 @@
             this.groupBox3.Text = "Смена 1:";
             this.groupBox3.Visible = false;
             // 
+            // maskedTextBox28
+            // 
+            this.maskedTextBox28.Location = new System.Drawing.Point(174, 137);
+            this.maskedTextBox28.Mask = "00";
+            this.maskedTextBox28.Name = "maskedTextBox28";
+            this.maskedTextBox28.Size = new System.Drawing.Size(100, 23);
+            this.maskedTextBox28.TabIndex = 5;
+            this.maskedTextBox28.Text = "40";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(88, 145);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(80, 15);
+            this.label28.TabIndex = 4;
+            this.label28.Text = "Время урока:";
+            // 
             // maskedTextBox9
             // 
             this.maskedTextBox9.Location = new System.Drawing.Point(174, 108);
@@ -406,6 +424,24 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Смена 2:";
             this.groupBox4.Visible = false;
+            // 
+            // maskedTextBox27
+            // 
+            this.maskedTextBox27.Location = new System.Drawing.Point(174, 137);
+            this.maskedTextBox27.Mask = "00";
+            this.maskedTextBox27.Name = "maskedTextBox27";
+            this.maskedTextBox27.Size = new System.Drawing.Size(100, 23);
+            this.maskedTextBox27.TabIndex = 5;
+            this.maskedTextBox27.Text = "40";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(88, 145);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(80, 15);
+            this.label27.TabIndex = 4;
+            this.label27.Text = "Время урока:";
             // 
             // maskedTextBox13
             // 
@@ -750,42 +786,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // maskedTextBox27
-            // 
-            this.maskedTextBox27.Location = new System.Drawing.Point(174, 137);
-            this.maskedTextBox27.Mask = "00";
-            this.maskedTextBox27.Name = "maskedTextBox27";
-            this.maskedTextBox27.Size = new System.Drawing.Size(100, 23);
-            this.maskedTextBox27.TabIndex = 5;
-            this.maskedTextBox27.Text = "40";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(88, 145);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(80, 15);
-            this.label27.TabIndex = 4;
-            this.label27.Text = "Время урока:";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(88, 145);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(80, 15);
-            this.label28.TabIndex = 4;
-            this.label28.Text = "Время урока:";
-            // 
-            // maskedTextBox28
-            // 
-            this.maskedTextBox28.Location = new System.Drawing.Point(174, 137);
-            this.maskedTextBox28.Mask = "00";
-            this.maskedTextBox28.Name = "maskedTextBox28";
-            this.maskedTextBox28.Size = new System.Drawing.Size(100, 23);
-            this.maskedTextBox28.TabIndex = 5;
-            this.maskedTextBox28.Text = "40";
-            // 
             // FormLT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -805,6 +805,7 @@
             this.Name = "FormLT";
             this.Text = "Время уроков";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormLT_FormClosed);
+            this.Load += new System.EventHandler(this.FormLT_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
