@@ -33,13 +33,13 @@ namespace School_tametable
             {
 
                 // получаем объекты из бд и передаем в датагрид
-                var employees = db.Employees.ToList();
+                var employees = db.Employees.OrderBy(c=>c.NameEmployess).ToList();
                 foreach (var i in employees)
                 {
                     comboBox1.Items.Add(i.NameEmployess);
                 }
 
-                var subject = db.Subjects.ToList();
+                var subject = db.Subjects.OrderBy(c=>c.NameSubject).ToList();
                 foreach(var i in subject)
                 {
                     comboBox2.Items.Add(i.NameSubject);
@@ -96,6 +96,7 @@ namespace School_tametable
         {
             comboBox2.Enabled = false;
             checkBox1.Visible = true;
+            button2.Visible = true;
            
         }
 

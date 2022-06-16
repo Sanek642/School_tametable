@@ -43,6 +43,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(138, 35);
             this.comboBox1.Name = "comboBox1";
@@ -70,6 +71,7 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(138, 68);
             this.comboBox2.Name = "comboBox2";
@@ -114,7 +116,7 @@
             // maskedTextBox2
             // 
             this.maskedTextBox2.Location = new System.Drawing.Point(138, 134);
-            this.maskedTextBox2.Mask = "к0каб00";
+            this.maskedTextBox2.Mask = "к0кабaa";
             this.maskedTextBox2.Name = "maskedTextBox2";
             this.maskedTextBox2.Size = new System.Drawing.Size(359, 23);
             this.maskedTextBox2.TabIndex = 4;
