@@ -36,8 +36,7 @@ namespace School_tametable
 
                 foreach (var i in cl)
                 {
-                    dg.Rows.Add(i.ClassesId, i.NameClasses.NameClass1, i.EmployeeSubject.Subjects.NameSubject, 
-                        i.EmployeeSubject.Employees.NameEmployess, i.HoursPerWeek, i.Cabinet);
+                    dg.Rows.Add(i.ClassesId, i.NameClasses.NameClass1, i.EmployeeSubject.Employees.NameEmployess, i.EmployeeSubject.Subjects.NameSubject,i.HoursPerWeek, i.Cabinet);
                 }
             }
         }

@@ -72,6 +72,7 @@
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button8 = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
@@ -101,12 +102,14 @@
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.dataGridView7 = new System.Windows.Forms.DataGridView();
-            this.button11 = new System.Windows.Forms.Button();
             this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -553,7 +556,8 @@
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column11,
-            this.Column12});
+            this.Column12,
+            this.Column31});
             this.dataGridView4.Location = new System.Drawing.Point(2, 2);
             this.dataGridView4.MultiSelect = false;
             this.dataGridView4.Name = "dataGridView4";
@@ -571,7 +575,14 @@
             // 
             this.Column12.HeaderText = "Название класса";
             this.Column12.Name = "Column12";
-            this.Column12.Width = 363;
+            this.Column12.Width = 180;
+            // 
+            // Column31
+            // 
+            this.Column31.HeaderText = "Смена";
+            this.Column31.Name = "Column31";
+            this.Column31.ReadOnly = true;
+            this.Column31.Width = 180;
             // 
             // button8
             // 
@@ -831,6 +842,7 @@
             // 
             // splitContainer5.Panel2
             // 
+            this.splitContainer5.Panel2.Controls.Add(this.button12);
             this.splitContainer5.Panel2.Controls.Add(this.button11);
             this.splitContainer5.Size = new System.Drawing.Size(714, 411);
             this.splitContainer5.SplitterDistance = 560;
@@ -844,23 +856,15 @@
             this.Column27,
             this.Column28,
             this.Column29,
+            this.Column32,
             this.Column30});
-            this.dataGridView7.Location = new System.Drawing.Point(-1, -1);
+            this.dataGridView7.Location = new System.Drawing.Point(-8, -4);
             this.dataGridView7.MultiSelect = false;
             this.dataGridView7.Name = "dataGridView7";
             this.dataGridView7.RowTemplate.Height = 25;
             this.dataGridView7.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView7.Size = new System.Drawing.Size(556, 407);
             this.dataGridView7.TabIndex = 0;
-            // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(27, 16);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(99, 48);
-            this.button11.TabIndex = 0;
-            this.button11.Text = "Составить расписание";
-            this.button11.UseVisualStyleBackColor = true;
             // 
             // Column26
             // 
@@ -886,13 +890,41 @@
             this.Column29.HeaderText = "Урок";
             this.Column29.Name = "Column29";
             this.Column29.ReadOnly = true;
+            this.Column29.Width = 40;
+            // 
+            // Column32
+            // 
+            this.Column32.HeaderText = "Предмет";
+            this.Column32.Name = "Column32";
+            this.Column32.ReadOnly = true;
+            this.Column32.Width = 120;
             // 
             // Column30
             // 
             this.Column30.HeaderText = "Кабинет";
             this.Column30.Name = "Column30";
             this.Column30.ReadOnly = true;
-            this.Column30.Width = 115;
+            this.Column30.Width = 55;
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(27, 81);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(99, 23);
+            this.button12.TabIndex = 1;
+            this.button12.Text = "В Excel";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(27, 16);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(99, 48);
+            this.button11.TabIndex = 0;
+            this.button11.Text = "Составить расписание";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // MainForm
             // 
@@ -989,8 +1021,6 @@
         private TabPage tabPage4;
         private SplitContainer splitContainer3;
         internal DataGridView dataGridView4;
-        private DataGridViewTextBoxColumn Column11;
-        private DataGridViewTextBoxColumn Column12;
         private Button button8;
         private TabPage tabPage5;
         internal DataGridView dataGridView5;
@@ -1021,10 +1051,15 @@
         private SplitContainer splitContainer5;
         internal DataGridView dataGridView7;
         private Button button11;
+        private DataGridViewTextBoxColumn Column11;
+        private DataGridViewTextBoxColumn Column12;
+        private DataGridViewTextBoxColumn Column31;
         private DataGridViewTextBoxColumn Column26;
         private DataGridViewTextBoxColumn Column27;
         private DataGridViewTextBoxColumn Column28;
         private DataGridViewTextBoxColumn Column29;
+        private DataGridViewTextBoxColumn Column32;
         private DataGridViewTextBoxColumn Column30;
+        private Button button12;
     }
 }

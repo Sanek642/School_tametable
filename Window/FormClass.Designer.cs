@@ -44,11 +44,18 @@
             this.maskedTextBox5 = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBox6 = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBox7 = new System.Windows.Forms.MaskedTextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.comboBox7 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(153, 257);
+            this.button1.Location = new System.Drawing.Point(229, 262);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 23);
             this.button1.TabIndex = 0;
@@ -113,7 +120,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(10, 217);
+            this.label7.Location = new System.Drawing.Point(10, 218);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(86, 15);
             this.label7.TabIndex = 1;
@@ -178,17 +185,108 @@
             // 
             // maskedTextBox7
             // 
-            this.maskedTextBox7.Location = new System.Drawing.Point(119, 209);
+            this.maskedTextBox7.Location = new System.Drawing.Point(119, 210);
             this.maskedTextBox7.Mask = "00";
             this.maskedTextBox7.Name = "maskedTextBox7";
             this.maskedTextBox7.Size = new System.Drawing.Size(126, 23);
             this.maskedTextBox7.TabIndex = 4;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.comboBox1.Location = new System.Drawing.Point(271, 32);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(50, 23);
+            this.comboBox1.TabIndex = 5;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.comboBox2.Location = new System.Drawing.Point(271, 65);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(50, 23);
+            this.comboBox2.TabIndex = 5;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.comboBox3.Location = new System.Drawing.Point(271, 94);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(50, 23);
+            this.comboBox3.TabIndex = 5;
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.comboBox4.Location = new System.Drawing.Point(271, 124);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(50, 23);
+            this.comboBox4.TabIndex = 5;
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.comboBox5.Location = new System.Drawing.Point(271, 153);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(50, 23);
+            this.comboBox5.TabIndex = 5;
+            // 
+            // comboBox6
+            // 
+            this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox6.FormattingEnabled = true;
+            this.comboBox6.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.comboBox6.Location = new System.Drawing.Point(271, 182);
+            this.comboBox6.Name = "comboBox6";
+            this.comboBox6.Size = new System.Drawing.Size(50, 23);
+            this.comboBox6.TabIndex = 5;
+            // 
+            // comboBox7
+            // 
+            this.comboBox7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox7.FormattingEnabled = true;
+            this.comboBox7.Items.AddRange(new object[] {
+            "1",
+            "2"});
+            this.comboBox7.Location = new System.Drawing.Point(271, 210);
+            this.comboBox7.Name = "comboBox7";
+            this.comboBox7.Size = new System.Drawing.Size(50, 23);
+            this.comboBox7.TabIndex = 5;
+            // 
             // FormClass
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(263, 297);
+            this.ClientSize = new System.Drawing.Size(333, 297);
+            this.Controls.Add(this.comboBox7);
+            this.Controls.Add(this.comboBox6);
+            this.Controls.Add(this.comboBox5);
+            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.maskedTextBox7);
             this.Controls.Add(this.maskedTextBox6);
             this.Controls.Add(this.maskedTextBox5);
@@ -208,6 +306,7 @@
             this.Name = "FormClass";
             this.Text = "Генерация классов";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormClass_FormClosed);
+            this.Load += new System.EventHandler(this.FormClass_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -231,5 +330,12 @@
         private MaskedTextBox maskedTextBox5;
         private MaskedTextBox maskedTextBox6;
         private MaskedTextBox maskedTextBox7;
+        private ComboBox comboBox1;
+        private ComboBox comboBox2;
+        private ComboBox comboBox3;
+        private ComboBox comboBox4;
+        private ComboBox comboBox5;
+        private ComboBox comboBox6;
+        private ComboBox comboBox7;
     }
 }

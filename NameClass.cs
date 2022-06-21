@@ -12,6 +12,7 @@ namespace School_tametable
 
         public long IdNameCl { get; set; }
         public string? NameClass1 { get; set; }
+        public long? Change { get; set; }
 
         public virtual ICollection<Class> Classes { get; set; }
 
@@ -23,10 +24,10 @@ namespace School_tametable
             {
 
                 // получаем объекты из бд и передаем в датагрид
-                var classes = db.NameClasses.OrderBy(c=>c.NameClass1).ToList();
+                var classes = db.NameClasses.OrderBy(c => c.NameClass1).ToList();
                 foreach (var i in classes)
                 {
-                    dg.Rows.Add(i.IdNameCl, i.NameClass1);
+                    dg.Rows.Add(i.IdNameCl, i.NameClass1,i.Change);
                 }
             }
         }

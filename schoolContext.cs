@@ -28,8 +28,9 @@ namespace School_tametable
         {
             if (!optionsBuilder.IsConfigured)
             {
+                var spath = System.IO.Path.GetFullPath(@"DB\school.db");
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlite(" Data Source= C:\\\\\\\\Users\\\\\\\\Alexa\\\\\\\\OneDrive\\\\\\\\Program\\\\\\\\School_tametable\\\\\\\\DB\\\\\\\\school.db ");
+                optionsBuilder.UseSqlite($" Data Source= {spath}");
             }
         }
 
@@ -170,7 +171,7 @@ namespace School_tametable
 
                 entity.ToTable("lessons_time");
 
-                entity.HasIndex(e => new { e.DayOfWeek, e.Change, e.Number, e.TimeEnd, e.TimeBeg, e.Turn }, "IX_lessons_time_day_of_week_change_number_time_end_time_beg_turn")
+                entity.HasIndex(e => new { e.DayOfWeek, e.Change, e.Number, e.TimeEnd, e.TimeBeg, e.Turn }, "IX_lessons_time_day_of_week_change_number_time_end_time_beg_Turn")
                     .IsUnique();
 
                 entity.Property(e => e.IdLt)
@@ -197,9 +198,7 @@ namespace School_tametable
                     .HasColumnType("DateTime")
                     .HasColumnName("time_end");
 
-                entity.Property(e => e.Turn)
-                    .HasColumnType("Text")
-                    .HasColumnName("turn");
+                entity.Property(e => e.Turn).HasColumnType("Integer");
             });
 
             modelBuilder.Entity<NameClass>(entity =>
@@ -214,6 +213,10 @@ namespace School_tametable
                 entity.Property(e => e.IdNameCl)
                     .HasColumnType("Integer")
                     .HasColumnName("id_name_cl");
+
+                entity.Property(e => e.Change)
+                    .HasColumnType("Integer")
+                    .HasColumnName("change");
 
                 entity.Property(e => e.NameClass1)
                     .HasColumnType("Text")

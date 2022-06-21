@@ -58,7 +58,7 @@ namespace School_tametable
 
         }
 
-        void OpDb(int uc, int dbc, string[] mas, schoolContext db, string str)
+        void OpDb(int uc, int dbc, string[] mas, schoolContext db, string str, int smena)
         {
             if(uc > dbc)
             {
@@ -66,10 +66,10 @@ namespace School_tametable
                 {
                     if (db.NameClasses.Where(p => p.NameClass1 == s).FirstOrDefault() == null)
                     {
-                        NameClass nameClass = new NameClass { NameClass1 = s };
+                        NameClass nameClass = new NameClass { NameClass1 = s, Change =  smena};
                         db.NameClasses.Add(nameClass);
                     }
-
+                    
                 }
             }
 
@@ -84,7 +84,21 @@ namespace School_tametable
                    db.NameClasses.Remove(t);                  
 
                 }
+
             }
+            //Обновляем значение смены
+
+            foreach (string s in mas)
+            {
+                var upmas= db.NameClasses.Where(p => p.NameClass1 == s).ToList();
+                foreach(var up in upmas)
+                {
+                    up.Change = smena;
+                    db.Update(up);
+                }
+
+            }
+
         }
 
 
@@ -103,6 +117,15 @@ namespace School_tametable
         private void button1_Click(object sender, EventArgs e)
         { try
             {
+                //Смена класса
+                int s5 =Convert.ToInt32(comboBox1.Text);
+                int s6= Convert.ToInt32(comboBox2.Text);
+                int s7 = Convert.ToInt32(comboBox3.Text);
+                int s8= Convert.ToInt32(comboBox4.Text);
+                int s9= Convert.ToInt32(comboBox5.Text);
+                int s10= Convert.ToInt32(comboBox6.Text);
+                int s11= Convert.ToInt32(comboBox7.Text);
+
                 // Значения введенные пользователем
                 int f = getCount(maskedTextBox1.Text);
                 int s = getCount(maskedTextBox2.Text);
@@ -135,13 +158,13 @@ namespace School_tametable
                 using (schoolContext db = new schoolContext())
                 {
                     
-                    OpDb(f, fdb, Parallel[0], db, "5%");
-                    OpDb(s, sdb, Parallel[1], db, "6%");
-                    OpDb(se, sedb, Parallel[2], db, "7%");
-                    OpDb(ei, eidb, Parallel[3], db, "8%");
-                    OpDb(n, ndb, Parallel[4], db, "9%");
-                    OpDb(t, tdb, Parallel[5], db, "10%");
-                    OpDb(el, eldb, Parallel[6], db, "11%");
+                    OpDb(f, fdb, Parallel[0], db, "5%",s5);
+                    OpDb(s, sdb, Parallel[1], db, "6%",s6);
+                    OpDb(se, sedb, Parallel[2], db, "7%",s7);
+                    OpDb(ei, eidb, Parallel[3], db, "8%",s8);
+                    OpDb(n, ndb, Parallel[4], db, "9%",s9);
+                    OpDb(t, tdb, Parallel[5], db, "10%",s10);
+                    OpDb(el, eldb, Parallel[6], db, "11%",s11);
 
                     NameClass.TruCathcSave(db, form, this, "Запись класса уже есть в справочнике!");
                 }
@@ -159,6 +182,17 @@ namespace School_tametable
         {
             form.Enabled = true;
             form.TopMost = true;
+        }
+
+        private void FormClass_Load(object sender, EventArgs e)
+        {
+            comboBox1.SelectedIndex = 0;
+            comboBox2.SelectedIndex = 0;
+            comboBox3.SelectedIndex = 0;
+            comboBox4.SelectedIndex = 0;
+            comboBox5.SelectedIndex = 0;
+            comboBox6.SelectedIndex = 0;
+            comboBox7.SelectedIndex = 0;
         }
     }
 }

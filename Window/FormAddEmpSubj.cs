@@ -114,7 +114,7 @@ namespace School_tametable
 
                 // получаем объекты из бд и передаем в датагрид иключая уже выбранный
                 
-                var subject = db.Subjects.Where(c => c.NameSubject != comboBox2.SelectedItem.ToString()).ToList();
+                var subject = db.Subjects.Where(c => c.NameSubject != comboBox2.SelectedItem.ToString()).OrderBy(c=>c.NameSubject).ToList();
                 foreach (var i in subject)
                 {
                     comboBox3.Items.Add(i.NameSubject);
@@ -185,7 +185,7 @@ namespace School_tametable
                     // получаем объекты из бд и передаем в датагрид иключая уже выбранный
 
                     var subject = db.Subjects.Where(c => c.NameSubject != comboBox2.SelectedItem.ToString()
-                                                         && c.NameSubject != comboBox3.SelectedItem.ToString()).ToList();
+                                                         && c.NameSubject != comboBox3.SelectedItem.ToString()).OrderBy(c => c.NameSubject).ToList();
                     foreach (var i in subject)
                     {
                         comboBox4.Items.Add(i.NameSubject);
@@ -211,7 +211,7 @@ namespace School_tametable
 
                     var subject = db.Subjects.Where(c => c.NameSubject != comboBox2.SelectedItem.ToString()
                                                          && c.NameSubject != comboBox3.SelectedItem.ToString()
-                                                         && c.NameSubject != comboBox4.SelectedItem.ToString()).ToList();
+                                                         && c.NameSubject != comboBox4.SelectedItem.ToString()).OrderBy(c => c.NameSubject).ToList();
                     foreach (var i in subject)
                     {
                         comboBox5.Items.Add(i.NameSubject);
