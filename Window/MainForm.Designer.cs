@@ -110,6 +110,7 @@
             this.Column30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -842,6 +843,7 @@
             // 
             // splitContainer5.Panel2
             // 
+            this.splitContainer5.Panel2.Controls.Add(this.button13);
             this.splitContainer5.Panel2.Controls.Add(this.button12);
             this.splitContainer5.Panel2.Controls.Add(this.button11);
             this.splitContainer5.Size = new System.Drawing.Size(714, 411);
@@ -925,6 +927,16 @@
             this.button11.Text = "Составить расписание";
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(27, 124);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(99, 45);
+            this.button13.TabIndex = 2;
+            this.button13.Text = "Отправить сотрудникам";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // MainForm
             // 
@@ -1061,5 +1073,6 @@
         private DataGridViewTextBoxColumn Column32;
         private DataGridViewTextBoxColumn Column30;
         private Button button12;
+        private Button button13;
     }
 }

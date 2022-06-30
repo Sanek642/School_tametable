@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using Word = Microsoft.Office.Interop.Word;
 using Microsoft.EntityFrameworkCore;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Net.Mail;
+using System.Net;
 
 
 namespace School_tametable
@@ -236,124 +238,118 @@ namespace School_tametable
         private void button10_Click(object sender, EventArgs e)
         {
             Word.Document doc = null;
-
-            try
-            {
-                string year = DateTime.Today.Year.ToString();
-                string yearn = (DateTime.Today.Year + 1).ToString();
-
-                List<string> par = new List<string>();
-
-
-                par.Add(year);
-                par.Add(yearn);
-
-
-                using (schoolContext db = new schoolContext())
+            
+                try
                 {
-                    //Формируем список вычислительных параметров для обычных дней
-                    var dayl = db.LessonsTimes.Where(c => c.DayOfWeek != "СУБ." && !Regex.IsMatch(c.DayOfWeek, @"^[А-Я]{2}")).Select(c => c.DayOfWeek).Distinct().ToArray();
-                    //Объединяем список в одну строку
-                    string dl = string.Join("", dayl);
+                    string year = DateTime.Today.Year.ToString();
+                    string yearn = (DateTime.Today.Year + 1).ToString();
 
-                    // Название дней недели обычное расписание
-                    par.Add(dl);
+                    List<string> par = new List<string>();
 
-                    //Получаем список элементов для любого дня
 
-                    var sl1 = db.LessonsTimes.Where(c => c.DayOfWeek == dayl[0] && c.Change == 1).ToList();
+                    par.Add(year);
+                    par.Add(yearn);
 
-                    FormUp.ListPar(sl1, par);
 
-                    var sl2 = db.LessonsTimes.Where(c => c.DayOfWeek == dayl[0] && c.Change == 2).ToList();
-
-                    FormUp.ListPar(sl2, par);
-
-                    //заполняем параметры особого дня
-
-                    var oday1 = db.LessonsTimes.Where(c => c.Change == 1 && c.DayOfWeek != "СБ." && Regex.IsMatch(c.DayOfWeek, @"^[А-Я]{2}")).ToList();
-
-                    //Название особого дня
-
-                    string od = oday1[0].DayOfWeek;
-                    par.Add(od);
-
-                    FormUp.ListPar(oday1, par);
-
-                    var oday2 = db.LessonsTimes.Where(c => c.DayOfWeek != "СБ." && Regex.IsMatch(c.DayOfWeek, @"^[А-Я]{2}") && c.Change == 2).ToList();
-
-                    FormUp.ListPar(oday2, par);
-
-                    //Заполняем для субботы
-                    var sub = db.LessonsTimes.Where(c => c.DayOfWeek == "СБ." && c.Change == 1).ToList();
-                    FormUp.ListPar(sub, par);
-                    var sub2 = db.LessonsTimes.Where(c => c.DayOfWeek == "СБ." && c.Change == 2).ToList();
-                    if (sub2.Any())
+                    using (schoolContext db = new schoolContext())
                     {
-                        FormUp.ListPar(sub2, par);
-                    }
-                    else
-                    {
-                        for (int j = 0; j < 7; j++)
+                        //Формируем список вычислительных параметров для обычных дней
+                        var dayl = db.LessonsTimes.Where(c => c.DayOfWeek != "СУБ." && !Regex.IsMatch(c.DayOfWeek, @"^[А-Я]{2}")).Select(c => c.DayOfWeek).Distinct().ToArray();
+                        //Объединяем список в одну строку
+                        string dl = string.Join("", dayl);
+
+                        // Название дней недели обычное расписание
+                        par.Add(dl);
+
+                        //Получаем список элементов для любого дня
+
+                        var sl1 = db.LessonsTimes.Where(c => c.DayOfWeek == dayl[0] && c.Change == 1).ToList();
+
+                        FormUp.ListPar(sl1, par);
+
+                        var sl2 = db.LessonsTimes.Where(c => c.DayOfWeek == dayl[0] && c.Change == 2).ToList();
+
+                        FormUp.ListPar(sl2, par);
+
+                        //заполняем параметры особого дня
+
+                        var oday1 = db.LessonsTimes.Where(c => c.Change == 1 && c.DayOfWeek != "СБ." && Regex.IsMatch(c.DayOfWeek, @"^[А-Я]{2}")).ToList();
+
+                        //Название особого дня
+
+                        string od = oday1[0].DayOfWeek;
+                        par.Add(od);
+
+                        FormUp.ListPar(oday1, par);
+
+                        var oday2 = db.LessonsTimes.Where(c => c.DayOfWeek != "СБ." && Regex.IsMatch(c.DayOfWeek, @"^[А-Я]{2}") && c.Change == 2).ToList();
+
+                        FormUp.ListPar(oday2, par);
+
+                        //Заполняем для субботы
+                        var sub = db.LessonsTimes.Where(c => c.DayOfWeek == "СБ." && c.Change == 1).ToList();
+                        FormUp.ListPar(sub, par);
+                        var sub2 = db.LessonsTimes.Where(c => c.DayOfWeek == "СБ." && c.Change == 2).ToList();
+                        if (sub2.Any())
                         {
-                            par.Add(" ");
+                            FormUp.ListPar(sub2, par);
                         }
+                        else
+                        {
+                            for (int j = 0; j < 7; j++)
+                            {
+                                par.Add(" ");
+                            }
+                        }
+
                     }
 
+
+                    //Открываем документ и заполняем параметры
+                    var spath = Application.StartupPath + @"Шаблоны\Расписание звонков.docx";
+
+
+                    Word.Application app = new Word.Application();
+
+                    // Открываем
+                    doc = app.Documents.Add(spath);
+                    doc.Activate();
+
+                    // Добавляем информацию
+                    // wBookmarks содержит все закладки
+                    Word.Bookmarks wBookmarks = doc.Bookmarks;
+                    Word.Range wRange;
+                    var dc = doc.Content;
+
+                    int i = 0;
+
+                    object oMissing = System.Reflection.Missing.Value;
+                    Word.Range dRange = doc.Range(ref oMissing, ref oMissing);
+
+
+                    foreach (Word.Bookmark mark in wBookmarks)
+                    {
+                        
+                        wRange = mark.Range;
+                        wRange.Text = par[i];
+
+                        i++;
+
+                    }
+
+                    // Закрываем документ
+
+                    doc.Close();
+                    doc = null;
                 }
 
-
-                //Открываем документ и заполняем параметры
-                var spath = System.IO.Path.GetFullPath(@"Шаблоны\Расписание звонков.docx");
-
-
-                Word.Application app = new Word.Application();
-
-                // Открываем
-                doc = app.Documents.Add(spath);
-                doc.Activate();
-
-                // Добавляем информацию
-                // wBookmarks содержит все закладки
-                Word.Bookmarks wBookmarks = doc.Bookmarks;
-                Word.Range wRange;
-                var dc = doc.Content;
-
-                int i = 0;
-
-                object oMissing = System.Reflection.Missing.Value;
-                Word.Range dRange = doc.Range(ref oMissing, ref oMissing);
-
-
-                foreach (Word.Bookmark mark in wBookmarks)
+                catch (Exception ex)
                 {
-                    //dRange.Start = mark.Range.Start;
-                    //dRange.End = mark.Range.End;
-                    //dRange.Delete();
-                    //doc.Save();
-                    //
-                    wRange = mark.Range;
-                    wRange.Text = par[i];
-
-                    i++;
+                    doc.Close();
+                    doc = null;
+                    FormUp.MessegeOk(ex.Message);
 
                 }
-
-                // Закрываем документ
-
-                doc.Close();
-                doc = null;
-            }
-
-
-
-            catch (Exception ex)
-            {
-                doc.Close();
-                doc = null;
-                FormUp.MessegeOk(ex.Message);
-
-            }
         }
 
         private void button11_Click(object sender, EventArgs e)
@@ -508,7 +504,7 @@ namespace School_tametable
                                     dgd.Add(tsub);
 
                                 }
-                                catch(NullReferenceException ex)
+                                catch(NullReferenceException)
                                 {
                                     FormUp.MessegeOk($"Для {subd.EmployeeSubject.Subjects.NameSubject} в классе {subd.NameClasses.NameClass1}  нет парного предмета с делением на группы!");
                                 }
@@ -623,165 +619,254 @@ namespace School_tametable
 
         private void button12_Click(object sender, EventArgs e)
         {
-            // Создаём экземпляр нашего приложения
-            Excel.Application excelApp = new Excel.Application();
-            // Создаём экземпляр рабочий книги Excel
-            Excel.Workbook workBook;
-            // Создаём экземпляр листа Excel
-            Excel.Worksheet workSheet;
-
-            workBook = excelApp.Workbooks.Add();
-            workSheet = (Excel.Worksheet)workBook.Worksheets.get_Item(1);
-
-            string[] d = { "ПН.", "ВТ.", "СР.", "ЧТ.", "ПТ.", "СБ." };
-
-            int dj = 2;
-            //Объединяем ячейки и заполняем статичными даными
-
-            foreach (string s in d)
-            {
-                MerCell($"A{dj}", $"A{dj + 6}", workSheet, s);
-                dj += 7;
-            }
-
             //Получаем данные из по классам 
+            List<Lesson> es = new List<Lesson>();
 
             using (schoolContext db = new schoolContext())
             {
-                var es = db.Lessons.Include(c => c.LessonsTime).Include(c => c.Classes.NameClasses).
+                 es = db.Lessons.Include(c => c.LessonsTime).Include(c => c.Classes.NameClasses).
                                     Include(c => c.Classes.EmployeeSubject.Subjects).ToList();
+                
+            }
+            if (es.Any())
+            {
 
-                //Получаем список разных классов и заполняем расписание для них
-                var cl = es.OrderBy(c => c.Classes.NameClasses.NameClass1).Select(c => c.Classes.NameClasses.NameClass1).Distinct();
+                // Создаём экземпляр нашего приложения
+                Excel.Application excelApp = new Excel.Application();
+                // Создаём экземпляр рабочий книги Excel
+                Excel.Workbook workBook;
+                // Создаём экземпляр листа Excel
+                Excel.Worksheet workSheet;
 
-                string[] alf = { "B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
+                workBook = excelApp.Workbooks.Add();
+                workSheet = (Excel.Worksheet)workBook.Worksheets.get_Item(1);
+
+                string[] d = { "ПН.", "ВТ.", "СР.", "ЧТ.", "ПТ.", "СБ." };
+
+                int dj = 2;
+                //Объединяем ячейки и заполняем статичными даными
+
+                foreach (string s in d)
+                {
+                    MerCell($"A{dj}", $"A{dj + 6}", workSheet, s);
+                    dj += 7;
+                }
+
+                //Получаем данные из по классам 
+
+                using (schoolContext db = new schoolContext())
+                {
+                    
+                    //Получаем список разных классов и заполняем расписание для них
+                    var cl = es.OrderBy(c => c.Classes.NameClasses.NameClass1).Select(c => c.Classes.NameClasses.NameClass1).Distinct();
+
+                    string[] alf = { "B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
                                   "AA","BB","CC","DD","EE","FF","GG","HH","II","JJ","KK","LL","MM","NN","OO",
                                   "PP","QQ","RR","SS","TT","UU","VV","WW","XX","YY","ZZ"};
-                int i = 0;
-                int j = 2;
-                int k = 2;
+                    int i = 0;
+                    int j = 2;
+                    int k = 2;
 
-                foreach (var c in cl)
-                {
-                    MerCell($"{alf[i]}1", $"{alf[i + 1]}1", workSheet, c);
-                    i += 2;
-
-                    //Заполняем расписание для класса
-                    var lcl = es.Where(p => p.Classes.NameClasses.NameClass1 == c).ToList();
-
-                    foreach (string s in d)
+                    foreach (var c in cl)
                     {
-                        var llcl = lcl.Where(p => p.LessonsTime.DayOfWeek.ToUpper() == s).OrderBy(p => p.LessonsTime.Number).ToList();
-                        string namesub = null;
-                        string cabinet = null;
+                        MerCell($"{alf[i]}1", $"{alf[i + 1]}1", workSheet, c);
+                        i += 2;
 
-                        foreach (var ll in llcl)
+                        //Заполняем расписание для класса
+                        var lcl = es.Where(p => p.Classes.NameClasses.NameClass1 == c).ToList();
+
+                        foreach (string s in d)
                         {
-                            if (ll.Classes.EmployeeSubject.Subjects.Successively == 1 || ll.Classes.EmployeeSubject.Subjects.Share == 1)
-                                //&& llcl.Where(c=>c.Classes.EmployeeSubject.Subjects.NameSubject==ll.Classes.EmployeeSubject.Subjects.NameSubject).ToList().Count!=1)
-                            {
-                                if (namesub is null && cabinet is null)
-                                {
-                                    cabinet = ll.Classes.Cabinet;
-                                    namesub = ll.Classes.EmployeeSubject.Subjects.NameSubject;
-                                    continue;
-                                }
-                                else
-                                {
-                                    if (namesub == ll.Classes.EmployeeSubject.Subjects.NameSubject)
-                                    {
-                                        DataCell(j, k, workSheet, ll.Classes.EmployeeSubject.Subjects.NameSubject);
-                                        DataCell(j, k + 1, workSheet, cabinet + "/" + ll.Classes.Cabinet);
+                            var llcl = lcl.Where(p => p.LessonsTime.DayOfWeek.ToUpper() == s).OrderBy(p => p.LessonsTime.Number).ToList();
+                            string namesub = null;
+                            string cabinet = null;
 
-                                        cabinet = null;
-                                        namesub = null;
-                                        j += 1;
+                            foreach (var ll in llcl)
+                            {
+                                if (ll.Classes.EmployeeSubject.Subjects.Successively == 1 || ll.Classes.EmployeeSubject.Subjects.Share == 1)
+                                //&& llcl.Where(c=>c.Classes.EmployeeSubject.Subjects.NameSubject==ll.Classes.EmployeeSubject.Subjects.NameSubject).ToList().Count!=1)
+                                {
+                                    if (namesub is null && cabinet is null)
+                                    {
+                                        cabinet = ll.Classes.Cabinet;
+                                        namesub = ll.Classes.EmployeeSubject.Subjects.NameSubject;
+                                        continue;
                                     }
                                     else
                                     {
-                                        DataCell(j, k, workSheet, namesub + "/"+ ll.Classes.EmployeeSubject.Subjects.NameSubject);
-                                        DataCell(j, k + 1, workSheet, cabinet + "/" + ll.Classes.Cabinet);
+                                        if (namesub == ll.Classes.EmployeeSubject.Subjects.NameSubject)
+                                        {
+                                            DataCell(j, k, workSheet, ll.Classes.EmployeeSubject.Subjects.NameSubject);
+                                            DataCell(j, k + 1, workSheet, cabinet + "/" + ll.Classes.Cabinet);
 
-                                        cabinet = null;
-                                        namesub = null;
-                                        j += 1;
+                                            cabinet = null;
+                                            namesub = null;
+                                            j += 1;
+                                        }
+                                        else
+                                        {
+                                            DataCell(j, k, workSheet, namesub + "/" + ll.Classes.EmployeeSubject.Subjects.NameSubject);
+                                            DataCell(j, k + 1, workSheet, cabinet + "/" + ll.Classes.Cabinet);
+
+                                            cabinet = null;
+                                            namesub = null;
+                                            j += 1;
+                                        }
                                     }
                                 }
+                                else
+                                {
+                                    DataCell(j, k, workSheet, ll.Classes.EmployeeSubject.Subjects.NameSubject);
+                                    DataCell(j, k + 1, workSheet, ll.Classes.Cabinet);
+                                    j += 1;
+                                }
+
+
                             }
-                            else
+                            if (j <= 9)
                             {
-                                DataCell(j, k, workSheet, ll.Classes.EmployeeSubject.Subjects.NameSubject);
-                                DataCell(j, k + 1, workSheet, ll.Classes.Cabinet);
-                                j += 1;
+                                j = 9;
+                            }
+
+                            if (j > 9 && j <= 15)
+                            {
+                                j = 16;
+                            }
+
+                            if (j > 16 && j <= 22)
+                            {
+                                j = 23;
+                            }
+
+                            if (j > 23 && j <= 30)
+                            {
+                                j = 30;
+                            }
+                            if (j > 30 && j <= 37)
+                            {
+                                j = 37;
+                            }
+
+
+
+                        }
+
+                        j = 2;
+                        k += 2;
+                    }
+
+
+                }
+
+                excelApp.Visible = true;
+                excelApp.UserControl = true;
+            }
+            else
+            {
+                FormUp.MessegeOk("Сгенерируйте расписание!");
+            }
+
+        }
+
+        private async void button13_Click(object sender, EventArgs e)
+        {
+
+            //Получаем данные из по классам 
+            List<Lesson> es = new List<Lesson>();
+            List<Employee> employees = new List<Employee>();
+
+            using (schoolContext db = new schoolContext())
+            {
+                es = db.Lessons.Include(c => c.LessonsTime).Include(c => c.Classes.NameClasses).
+                                   Include(c => c.Classes.EmployeeSubject.Subjects).
+                                   Include(c => c.Classes.EmployeeSubject.Employees).ToList();
+
+            }
+            if (es.Any())
+            {
+                string path = Application.StartupPath + @"Шаблоны\Расп.txt";
+                //Получаем записи всех сотрудников
+
+                using (schoolContext db = new schoolContext())
+                {
+                    using (StreamWriter writer = new StreamWriter(path, false))
+                    {
+                        var emp = db.Employees.ToList();
+
+                        
+                        foreach (var t in emp)
+                        {
+
+                           
+                            //получаем расписание данного сотрудника
+
+                            var ess = es.Where(c => c.Classes.EmployeeSubject.Employees.IdEmployess == t.IdEmployess).ToList();
+
+                            if (ess.Any())
+                            {
+                                await writer.WriteLineAsync(t.NameEmployess+" "+ess.Count.ToString() + "ч.");
+
+                                //заполняем список сотрудников, которые проводят уроки
+                                employees.Add(t);
+                                foreach (var ls in ess)
+                                {
+                                    string str = ls.Classes.NameClasses.Change + " " + ls.Classes.NameClasses.NameClass1 + " "
+                                                 + ls.LessonsTime.Number + " " + ls.Classes.EmployeeSubject.Subjects.NameSubject + " "
+                                                 + ls.Classes.Cabinet;
+                                    await writer.WriteLineAsync(str);
+                                }
+                                await writer.WriteLineAsync("\n");
                             }
                             
 
-                        }
-                        if (j <= 9)
-                        {
-                            j = 9;
-                        }
 
-                        if (j > 9 && j <=15)
-                        {
-                            j = 16;
                         }
-
-                        if (j > 16 && j <= 22)
-                        {
-                            j = 23;
-                        }
-
-                        if (j > 23 && j <=30)
-                        {
-                            j = 30;
-                        }
-                        if (j > 30 && j <=37)
-                        {
-                            j = 37;
-                        }
-
-
-
                     }
 
-                    j = 2;
-                    k += 2;
+                    //Отправляем на электронную почту файл
+
+                    //// отправитель - устанавливаем адрес и отображаемое в письме имя
+                    //MailAddress from = new MailAddress("school-22@mail.ru", "Школа 22 в г. Благовещенске");
+                    //MailAddress to = new MailAddress("school-22@mail.ru");
+                    //MailMessage m = new MailMessage(from, to);
+                    //// тема письма
+                    //string year = DateTime.Today.Year.ToString();
+                    //string yearn = (DateTime.Today.Year + 1).ToString();
+                    //m.Subject = "Расписание " + year + "/" + yearn;
+                    //// текст письма
+                    //m.Body = "<h2>Сгенерировано и отправлено автоматически</h2>";
+                    //// письмо представляет код html
+                    //m.IsBodyHtml = true;
+
+                    //foreach (var tmp in employees)
+                    //{
+                    //    m.CC.Add(tmp.Email);
+                    //    //Вложение почта
+                    //    m.Attachments.Add(new Attachment(path));
+                       
+                    //}
+                    //try
+                    //{
+                    //    // адрес smtp-сервера и порт, с которого будем отправлять письмо
+                    //    SmtpClient smtp = new SmtpClient("smtp.mail.ru", 465);
+                    //    // логин и пароль
+                    //    smtp.Credentials = new NetworkCredential("school-22@mail.ru", "fzytpyf.22");
+                    //    smtp.EnableSsl = true;
+                    //    smtp.Send(m);
+                    //}
+                    //catch(Exception ex)
+                    //{
+                    //    FormUp.MessegeOk(ex.Message);
+                    //}
+
                 }
 
-
             }
-            
- 
-            // Заполняем первую строку числами от 1 до 10
-            //for (int j = 1; j <= 10; j++)
-            //{
-            //    workSheet.Cells[1, j] = j;
-            //}
 
-            //// Вычисляем сумму этих чисел
-            //Excel.Range rng = workSheet.Range["A2"];
-            //rng.Formula = "=SUM(A1:L1)";
-            //rng.FormulaHidden = false;
-
-            //// Выделяем границы у этой ячейки
-            //Excel.Borders border = rng.Borders;
-            //border.LineStyle = Excel.XlLineStyle.xlContinuous;
-
-            //// Строим круговую диаграмму
-            //Excel.ChartObjects chartObjs = (Excel.ChartObjects)workSheet.ChartObjects();
-            //Excel.ChartObject chartObj = chartObjs.Add(5, 50, 300, 300);
-            //Excel.Chart xlChart = chartObj.Chart;
-            //Excel.Range rng2 = workSheet.Range["A1:L1"];
-            //// Устанавливаем тип диаграммы
-            //xlChart.ChartType = Excel.XlChartType.xlPie;
-            //// Устанавливаем источник данных (значения от 1 до 10)
-            //xlChart.SetSourceData(rng2);
-
-            // Открываем созданный excel-файл
-            excelApp.Visible = true;
-            excelApp.UserControl = true;
-
+            else
+            {
+                FormUp.MessegeOk("Сгенерируйте расписание!");
+            }
         }
     }
 }

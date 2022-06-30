@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "School_tametable", "School_tametable.csproj", "{F5742F45-89D1-422D-906E-846657071117}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupSTime", "..\SetupSTime\SetupSTime.vdproj", "{ED003309-13B2-4852-BCF3-B44921206B4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{F5742F45-89D1-422D-906E-846657071117}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5742F45-89D1-422D-906E-846657071117}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5742F45-89D1-422D-906E-846657071117}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED003309-13B2-4852-BCF3-B44921206B4D}.Debug|Any CPU.ActiveCfg = Debug
+		{ED003309-13B2-4852-BCF3-B44921206B4D}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
